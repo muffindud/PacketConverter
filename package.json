@@ -1,0 +1,23 @@
+{
+  "name": "packetconverter",
+  "version": "1.0.0",
+  "description": "Converter for the packets used in the TempTake project.",
+  "homepage": "https://github.com/muffindud/PacketConverter#readme",
+  "bugs": {
+    "url": "https://github.com/muffindud/PacketConverter/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/muffindud/PacketConverter.git"
+  },
+  "license": "ISC",
+  "author": "muffindud",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

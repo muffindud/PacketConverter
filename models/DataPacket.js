@@ -21,8 +21,4 @@ DataPacket.fromBin = (bin) => {
     throw new Error('Not implemented');
 }
 
-DataPacket.modbusCRC16 = (bin) => {
-    throw new Error('Not implemented');
-}
-
 module.exports = DataPacket;

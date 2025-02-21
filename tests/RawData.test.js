@@ -19,9 +19,10 @@ const deformedBinRawData = Buffer.from([
     0x05, 0xD4, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00  // ppm * 100
 ]);
 
-let rawData;
 
 describe('RawData', () => {
+    let rawData;
+
     describe('fromBin', () => {
         test('should create RawData instance', () => {
             rawData = RawData.fromBin(validBinRawData);
@@ -40,9 +41,9 @@ describe('RawData', () => {
         });
     });
 
-    describe('humidity', () => {
-        test('should have correct humidity', () => {
-            expect(rawData.humidity).toBe(48.10);
+    describe('crc16', () => {
+        test('should properly compute the crc16 from raw data', () => {
+            expect(rawData.modusCRC16).toBe(0x65C4);
         });
     });
 

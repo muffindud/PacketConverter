@@ -75,13 +75,6 @@ const deformedDataPacket = Buffer.from([
     0x05, 0xD4, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00  // ppm * 100
 ]);
 
-const validBinRawData = Buffer.from([
-    0x0E, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (temperature + 40) * 100
-    0xCA, 0x12, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // humidity * 100
-    0x83, 0x29, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, // pressure * 100
-    0x05, 0xD4, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 // ppm * 100
-]);
-
 describe('DataPacket', () => {
     let dataPacket;
 
@@ -106,16 +99,6 @@ describe('DataPacket', () => {
 
         test('should throw error on deformed bin', () => {
             expect(() => DataPacket.fromBin(deformedDataPacket)).toThrow(InvalidPacketStructure);
-        });
-    });
-
-    describe('crc16', () => {
-        test('should properly compute the crc16 from raw data', () => {
-            expect(DataPacket.modbusCRC16(validBinRawData)).toBe(0x65C4);
-        });
-
-        test('should have correct crc16', () => {
-            expect(dataPacket.crc16).toBe(0x65C4);
         });
     });
 });

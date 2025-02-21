@@ -18,4 +18,8 @@ class Metadata {
     }
 }
 
+Metadata.fromBin = (bin) => {
+    throw new Error('Not implemented');
+}
+
 module.exports = Metadata;

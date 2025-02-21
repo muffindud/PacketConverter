@@ -14,4 +14,8 @@ class RawData {
     }
 }
 
+RawData.fromBin = (bin) => {
+    throw new Error('Not implemented');
+}
+
 module.exports = RawData;

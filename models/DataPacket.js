@@ -1,3 +1,6 @@
+const Metadata = require('./Metadata');
+const RawData = require('./RawData');
+
 // struct DAT_T{
 //     uint8_t type;
 //     META_T meta;
@@ -12,6 +15,14 @@ class DataPacket {
         this.length = length;
         this.data = data;
     }
+}
+
+DataPacket.fromBin = (bin) => {
+    throw new Error('Not implemented');
+}
+
+DataPacket.modbusCRC16 = (bin) => {
+    throw new Error('Not implemented');
 }
 
 module.exports = DataPacket;

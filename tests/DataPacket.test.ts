@@ -76,7 +76,7 @@ const deformedDataPacket = Buffer.from([
 ]);
 
 describe('DataPacket', () => {
-    let dataPacket;
+    let dataPacket: DataPacket;
 
     describe('fromBin', () => {
         test('should create DataPacket instance', () => {

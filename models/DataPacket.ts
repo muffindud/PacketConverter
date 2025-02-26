@@ -51,7 +51,29 @@ class DataPacket {
     }
 
     static fromBin(bin: Buffer): DataPacket {
-        throw new Error('Not implemented');
+        if (bin.length != 54) {
+            throw new InvalidPacketStructure();
+        }
+
+        if (bin.readUInt8(19) >= bin.readUInt8(20)) {
+            console.log(bin.readUInt8(19), bin.readUInt8(20));
+            throw new InvalidDataIndex();
+        }
+
+        if (bin.readUInt8(21) !== 0x20) {
+            throw new InvalidDataLength();
+        }
+
+        if (bin.readUInt8(0) !== 0xDD) {
+            throw new InvalidPacketType();
+        }
+
+        return new DataPacket(
+            bin.readUInt8(0),
+            Metadata.fromBin(bin.slice(1, 21)),
+            bin.readUInt8(21),
+            RawData.fromBin(bin.slice(22, 55))
+        )
     }
 }
 

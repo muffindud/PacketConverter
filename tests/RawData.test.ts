@@ -6,7 +6,7 @@ import RawData, { InvalidRawDataStructure } from '../models/RawData';
 // ppm: 542.77
 
 const validBinRawData = Buffer.from([
-    0x0E, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (temperature + 40) * 100
+    0xDE, 0x17, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // (temperature + 40) * 100
     0xCA, 0x12, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // humidity * 100
     0x83, 0x29, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, // pressure * 100
     0x05, 0xD4, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00  // ppm * 100
@@ -35,15 +35,21 @@ describe('RawData', () => {
         });
     });
 
+    describe('crc16', () => {
+            test('should properly compute the crc16 from raw data', () => {
+                expect(RawData.modbusCRC16(validBinRawData)).toBe(0x6651);
+            });
+        });
+
     describe('temperature', () => {
         test('should have correct temperature', () => {
             expect(rawData.temperature).toBe(21.10);
         });
     });
 
-    describe('crc16', () => {
-        test('should properly compute the crc16 from raw data', () => {
-            expect(RawData.modbusCRC16(validBinRawData)).toBe(0x65C4);
+    describe('humidity', () => {
+        test('should have correct humidity', () => {
+            expect(rawData.humidity).toBe(48.10);
         });
     });
 

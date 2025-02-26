@@ -56,7 +56,6 @@ class DataPacket {
         }
 
         if (bin.readUInt8(19) >= bin.readUInt8(20)) {
-            console.log(bin.readUInt8(19), bin.readUInt8(20));
             throw new InvalidDataIndex();
         }
 

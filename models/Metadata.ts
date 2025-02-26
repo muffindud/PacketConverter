@@ -38,7 +38,18 @@ class Metadata {
     }
 
     static fromBin(bin: Buffer): Metadata {
-        throw new Error('Not implemented');
+        if (bin.length !== 20) {
+            throw new InvalidMetadataStructure();
+        }
+
+        return new Metadata(
+            bin.readUInt16LE(0),
+            bin.slice(2, 8).toString('hex').toUpperCase(),
+            bin.slice(8, 14).toString('hex').toUpperCase(),
+            bin.readUInt32LE(14),
+            bin.readUInt8(18),
+            bin.readUInt8(19)
+        );
     }
 }
 

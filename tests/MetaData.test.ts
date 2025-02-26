@@ -1,4 +1,4 @@
-const Metadata = require('../models/Metadata');
+import Metadata, { InvalidMetadataStructure } from '../models/Metadata';
 
 // manager mac: EC64C990BF58
 // worker mac:  550000000001
@@ -21,7 +21,7 @@ const deformedBinMetadata = Buffer.from([
 ]);
 
 describe('Metadata', () => {
-    let metadata;
+    let metadata: Metadata;
 
     describe('fromBin', () => {
         test('should create Metadata instance', () => {

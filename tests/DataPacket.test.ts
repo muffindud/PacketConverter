@@ -1,4 +1,4 @@
-const DataPacket = require('../models/DataPacket');
+import DataPacket, { InvalidPacketStructure, InvalidPacketType, InvalidDataLength, InvalidDataIndex } from '../models/DataPacket';
 
 const validBinDataPacket = Buffer.from([
     0xDD,                                           // packet type

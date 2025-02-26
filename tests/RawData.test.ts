@@ -1,4 +1,4 @@
-const RawData = require('../models/RawData');
+import RawData, { InvalidRawDataStructure } from '../models/RawData';
 
 // temperature: 21.10
 // humidity: 48.10
@@ -21,7 +21,7 @@ const deformedBinRawData = Buffer.from([
 
 
 describe('RawData', () => {
-    let rawData;
+    let rawData: RawData;
 
     describe('fromBin', () => {
         test('should create RawData instance', () => {
@@ -43,7 +43,7 @@ describe('RawData', () => {
 
     describe('crc16', () => {
         test('should properly compute the crc16 from raw data', () => {
-            expect(rawData.modusCRC16).toBe(0x65C4);
+            expect(RawData.modbusCRC16(validBinRawData)).toBe(0x65C4);
         });
     });
 
